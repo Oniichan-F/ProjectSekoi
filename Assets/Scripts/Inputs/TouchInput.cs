@@ -10,5 +10,22 @@ public class TouchInput : MonoBehaviour
     public void onTap()
     {
         lightPanel.Flash();
+        Debug.Log("tap");
+    }
+
+    public void onFlick()
+    {
+        Debug.Log("flick");
+    }
+
+    public void onEnter()
+    {
+        lightPanel.Flash();
+        Debug.Log("enter");
+    }
+
+    public void onExit()
+    {
+        Debug.Log("exit");
     }
 }
