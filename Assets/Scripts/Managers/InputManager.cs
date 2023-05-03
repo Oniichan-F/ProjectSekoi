@@ -4,10 +4,24 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    private bool[] tapStates = {false, false, false, false, false, false, false, false, false, false, false, false};
-    private bool[] flickStates = {false, false, false, false, false, false, false, false, false, false, false, false};
-    private bool[] dragStates = {false, false, false, false, false, false, false, false, false, false, false, false};
+    public static InputManager instance = null;
 
+    private bool[] tapStates;
+    private bool[] flickStates;
+    public bool[] dragStates;
+
+    private void Awake()
+    {
+        if(instance == null) {
+            instance = this;
+            tapStates   = new bool[] {false, false, false, false, false, false, false, false, false, false, false, false};
+            flickStates = new bool[] {false, false, false, false, false, false, false, false, false, false, false, false};
+            dragStates  = new bool[] {false, false, false, false, false, false, false, false, false, false, false, false};
+        }
+        else {
+            Destroy(this.gameObject);
+        }
+    }
     private void LateUpdate()
     {
         ResetState();
