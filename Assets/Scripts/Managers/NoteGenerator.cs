@@ -26,7 +26,6 @@ using UnityEngine;
 public class NoteGenerator : MonoBehaviour
 {
     [SerializeField] GameObject tapNote;
-    public bool isCompleted;
 
     private float[] X = {-3f, -2.5f, -2f, -1.5f, -1f, -0.5f, 0f, 0.5f, 1f, 1.5f, 2f, 2.5f};
 
@@ -35,7 +34,6 @@ public class NoteGenerator : MonoBehaviour
 
     private void OnEnable()
     {
-        isCompleted = false;
         chartFileName = RhythmGameManager.instance.chartFileName;
         baseNoteSpeed = RhythmGameManager.instance.baseNoteSpeed;
         Load(chartFileName);
@@ -67,7 +65,7 @@ public class NoteGenerator : MonoBehaviour
             }
         }
 
-        isCompleted = true;
+        RhythmGameManager.instance.isChartGenerated = true;
     }
 
     private float CalcTime(ChartData cd, NoteData nd)

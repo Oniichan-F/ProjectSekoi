@@ -14,21 +14,21 @@
 		{
 			"LPB": 4,
 			"num": 20,
-			"block": [11],
+			"block": [0,1],
 			"type": 1,
 			"notes": []
 		},
 		{
 			"LPB": 4,
 			"num": 24,
-			"block": [1,2],
+			"block": [0,1,2],
 			"type": 1,
 			"notes": []
 		},
 		{
 			"LPB": 4,
 			"num": 28,
-			"block": [1,2,3],
+			"block": [0,1,2,3],
 			"type": 1,
 			"notes": []
 		},

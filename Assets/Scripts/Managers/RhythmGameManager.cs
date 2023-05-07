@@ -15,6 +15,7 @@ public class RhythmGameManager : MonoBehaviour
     public string chartFileName;
     
     public bool isGameActive;
+    public bool isChartGenerated;
 
     public float baseNoteSpeed;
 
@@ -26,6 +27,7 @@ public class RhythmGameManager : MonoBehaviour
             Application.targetFrameRate = 60;
             instance = this;
             isGameActive = true;
+            isChartGenerated = false;
             lookupSongTable();
         }
         else {

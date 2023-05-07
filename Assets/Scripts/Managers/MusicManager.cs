@@ -19,9 +19,11 @@ public class MusicManager : MonoBehaviour
 
     private void Update() {
         if(!isPlaying) {
-            if(RhythmGameManager.instance.tmp) {
-                audioSource.PlayOneShot(audioClip);
-                isPlaying = true;
+            if(RhythmGameManager.instance.isChartGenerated) {
+                if(RhythmGameManager.instance.tmp) {
+                    audioSource.PlayOneShot(audioClip);
+                    isPlaying = true;
+                }
             }
         }
     }
