@@ -62,7 +62,7 @@ public class NoteGenerator : MonoBehaviour
                 );
 
                 TapNote note = instance.GetComponentInChildren<TapNote>();
-                note.Init(id:i, group:0, lanes:lanes);
+                note.Init(id:i, group:0, lanes:lanes, time:time);
                 note.setSize();
             }
         }

@@ -11,18 +11,21 @@ public class Note : MonoBehaviour
     public float time {get; set;}
     public float speed {get; set;}
     public bool isTouchable {get; set;}
+    public bool isAuto {get; set;}
 
     private Renderer rend;
 
-    public void Init(int id, int group, int[] lanes)
+    public void Init(int id, int group, int[] lanes, float time)
     {
         this.id    = id;
         this.group = group;
-        this.lanes  = lanes;
+        this.lanes = lanes;
+        this.time  = time; 
         this.isTouchable = false;
 
-        this.size  = lanes.Length;
-        this.speed = RhythmGameManager.instance.baseNoteSpeed;
+        this.size   = lanes.Length;
+        this.speed  = RhythmGameManager.instance.baseNoteSpeed;
+        this.isAuto = RhythmGameManager.instance.isAutoMode; 
         rend = GetComponent<Renderer>();
         ChangeVisibility(true);
     }
