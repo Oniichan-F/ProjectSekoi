@@ -5,27 +5,28 @@ using UnityEngine;
 public class TouchInput : MonoBehaviour
 {
     [SerializeField] LightPanel lightPanel;
-    
+    [SerializeField] InputManager inputManager;
+    [SerializeField] int id;
 
     public void onTap()
     {
         lightPanel.Flash();
-        Debug.Log("tap");
+        inputManager.SetTapState(id, true);
     }
 
     public void onFlick()
     {
-        Debug.Log("flick");
+        inputManager.SetFlickState(id, true);
     }
 
     public void onEnter()
     {
         lightPanel.Flash();
-        Debug.Log("enter");
+        inputManager.SetDragState(id, true);
     }
 
     public void onExit()
     {
-        Debug.Log("exit");
+        inputManager.SetDragState(id, false);
     }
 }
