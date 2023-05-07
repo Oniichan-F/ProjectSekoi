@@ -8,7 +8,7 @@ public class InputManager : MonoBehaviour
 
     private bool[] tapStates;
     private bool[] flickStates;
-    public bool[] dragStates;
+    private bool[] dragStates;
 
     private void Awake()
     {
