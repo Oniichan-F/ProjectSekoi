@@ -16,7 +16,7 @@ public class TapNote : Note
     private void Update()
     {
         if(RhythmGameManager.instance.isChartGenerated) {
-            if(RhythmGameManager.instance.tmp) {
+            if(!RhythmGameManager.instance.isPaused) {
                 // Updates
                 UpdatePosition();
                 UpdateTime();

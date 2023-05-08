@@ -14,19 +14,17 @@ public class RhythmGameManager : MonoBehaviour
     public string songFileName;
     public string chartFileName;
     
-    public bool isGameActive;
+    public bool isPaused;
     public bool isChartGenerated;
 
     public float baseNoteSpeed;
-
-    public bool tmp;
 
     private void Awake()
     {
         if(instance == null) {
             Application.targetFrameRate = 60;
             instance = this;
-            isGameActive = true;
+            isPaused = false;
             isChartGenerated = false;
             lookupSongTable();
         }
