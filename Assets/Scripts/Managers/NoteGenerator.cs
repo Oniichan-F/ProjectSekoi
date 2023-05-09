@@ -26,6 +26,7 @@ using UnityEngine;
 public class NoteGenerator : MonoBehaviour
 {
     [SerializeField] GameObject tapNote;
+    [SerializeField] GameObject flickNote;
 
     private float[] X = {-3f, -2.5f, -2f, -1.5f, -1f, -0.5f, 0f, 0.5f, 1f, 1.5f, 2f, 2.5f};
 
@@ -60,6 +61,23 @@ public class NoteGenerator : MonoBehaviour
                 );
 
                 TapNote note = instance.GetComponentInChildren<TapNote>();
+                note.Init(id:i, group:0, lanes:lanes, time:time);
+                note.setSize();
+            }
+
+            // FlickNote
+            else if(noteData.type == 2) {
+                int[] lanes = noteData.block;
+                float time  = CalcTime(chartData, noteData);
+                float z     = time * baseNoteSpeed;
+
+                GameObject instance = Instantiate(
+                    flickNote,
+                    new Vector3(X[lanes[0]], 0.02f, z),
+                    Quaternion.identity
+                );
+
+                FlickNote note = instance.GetComponentInChildren<FlickNote>();
                 note.Init(id:i, group:0, lanes:lanes, time:time);
                 note.setSize();
             }

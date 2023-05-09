@@ -2396,6 +2396,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tapNote: {fileID: 3235971255104848206, guid: 568d0ea174d28b247be2864cd57e92b2, type: 3}
+  flickNote: {fileID: 2110514313497121055, guid: 5dafa526e1ccec44c956544ae9bc7c47,
+    type: 3}
 --- !u!1 &1023853046
 GameObject:
   m_ObjectHideFlags: 0
@@ -2692,7 +2694,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDebugMode: 1
-  isAutoMode: 1
+  isAutoMode: 0
   songID: 0
   songDisplayName: 
   songFileName: 
