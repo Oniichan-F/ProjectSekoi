@@ -35,57 +35,57 @@
 		{
 			"LPB": 4,
 			"num": 32,
-			"block": [1],
-			"type": 1,
+			"block": [0,1],
+			"type": 3,
 			"notes": []
 		},
 		{
 			"LPB": 4,
-			"num": 32,
-			"block": [10],
-			"type": 1,
+			"num": 33,
+			"block": [1,2],
+			"type": 3,
+			"notes": []
+		},
+		{
+			"LPB": 4,
+			"num": 34,
+			"block": [2,3],
+			"type": 3,
+			"notes": []
+		},
+		{
+			"LPB": 4,
+			"num": 35,
+			"block": [3,4],
+			"type": 3,
 			"notes": []
 		},
 		{
 			"LPB": 4,
 			"num": 36,
-			"block": [0],
-			"type": 1,
+			"block": [4,5],
+			"type": 3,
 			"notes": []
 		},
 		{
 			"LPB": 4,
-			"num": 36,
-			"block": [4],
-			"type": 1,
+			"num": 37,
+			"block": [5,6],
+			"type": 3,
 			"notes": []
 		},
 		{
 			"LPB": 4,
-			"num": 40,
-			"block": [11],
-			"type": 1,
+			"num": 38,
+			"block": [6,7],
+			"type": 3,
 			"notes": []
 		},
 		{
 			"LPB": 4,
-			"num": 40,
-			"block": [7],
-			"type": 1,
-			"notes": []
-		},
-		{
-			"LPB": 4,
-			"num": 44,
-			"block": [4],
-			"type": 1,
-			"notes": []
-		},
-		{
-			"LPB": 4,
-			"num": 44,
-			"block": [7],
-			"type": 1,
+			"num": 39,
+			"block": [7,8],
+			"type": 3,
 			"notes": []
 		}
 	]

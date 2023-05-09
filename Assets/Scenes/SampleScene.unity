@@ -2398,6 +2398,8 @@ MonoBehaviour:
   tapNote: {fileID: 3235971255104848206, guid: 568d0ea174d28b247be2864cd57e92b2, type: 3}
   flickNote: {fileID: 2110514313497121055, guid: 5dafa526e1ccec44c956544ae9bc7c47,
     type: 3}
+  slideNote: {fileID: 5614882477467336286, guid: e1143dcde6db8d74385c8407e71f0f3f,
+    type: 3}
 --- !u!1 &1023853046
 GameObject:
   m_ObjectHideFlags: 0
