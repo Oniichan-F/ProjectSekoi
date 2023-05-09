@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TapNote : Note
+public class FlickNote : Note
 {
     private InputManager inputManager;
     private EffectManager effectManager;
@@ -70,7 +70,7 @@ public class TapNote : Note
         bool CheckState()
         {
             foreach(int lane in lanes) {
-                if(inputManager.GetTapState(lane)) {
+                if(inputManager.GetFlickState(lane)) {
                     return true;
                 }
             }
@@ -105,3 +105,4 @@ public class TapNote : Note
         }
     }
 }
+

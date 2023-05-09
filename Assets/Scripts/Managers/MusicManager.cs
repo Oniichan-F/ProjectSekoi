@@ -7,30 +7,39 @@ public class MusicManager : MonoBehaviour
     private AudioSource audioSource;
     private AudioClip audioClip;
     private string songFileName;
-    private bool isPlaying;
 
     private void Start()
     {
         songFileName = RhythmGameManager.instance.songFileName;
         audioSource  = GetComponent<AudioSource>();
         audioClip    = Resources.Load<AudioClip>("Music/" + songFileName);
-        isPlaying = false; 
+        audioSource.clip = audioClip;
+
+        Play();
     }
 
-    private void Update() {
-        if(!isPlaying) {
-            if(RhythmGameManager.instance.isChartGenerated) {
-                if(RhythmGameManager.instance.tmp) {
-                    audioSource.PlayOneShot(audioClip);
-                    isPlaying = true;
-                }
-            }
+    public void Toggle()
+    {
+        if(RhythmGameManager.instance.isPaused) {
+            Pause();
+        }
+        else {
+            Resume();
         }
     }
 
-    public void Play()
+    private void Play()
     {
-        audioSource.PlayOneShot(audioClip);
-        isPlaying = true;
+        audioSource.Play();
+    }
+
+    private void Resume()
+    {
+        audioSource.UnPause();
+    }
+
+    private void Pause()
+    {
+        audioSource.Pause();
     }
 }
