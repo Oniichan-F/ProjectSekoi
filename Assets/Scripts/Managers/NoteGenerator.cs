@@ -28,6 +28,9 @@ public class NoteGenerator : MonoBehaviour
     [SerializeField] GameObject tapNote;
     [SerializeField] GameObject flickNote;
 
+    [SerializeField] GameObject headNote;
+    [SerializeField] GameObject relayNote;
+
     private float[] X = {-3f, -2.5f, -2f, -1.5f, -1f, -0.5f, 0f, 0.5f, 1f, 1.5f, 2f, 2.5f};
 
     private string chartFileName;
@@ -80,6 +83,47 @@ public class NoteGenerator : MonoBehaviour
                 FlickNote note = instance.GetComponentInChildren<FlickNote>();
                 note.Init(id:i, group:0, lanes:lanes, time:time);
                 note.setSize();
+            }
+
+            // LongNote
+            else if(noteData.type == 10) {
+                NoteData[] children = noteData.notes;
+
+                foreach(NoteData child in children) {
+                    // HeadNote
+                    if(child.type == 11) {
+                        int[] lanes = child.block;
+                        float time  = CalcTime(chartData, child);
+                        float z     = time * baseNoteSpeed;
+
+                        GameObject instance = Instantiate(
+                            headNote,
+                            new Vector3(X[lanes[0]], 0.02f, z),
+                            Quaternion.identity
+                        );
+
+                        HeadNote note = instance.GetComponentInChildren<HeadNote>();
+                        note.Init(id:i, group:0, lanes:lanes, time:time);
+                        note.setSize();
+                    }
+
+                    // RelayNote
+                    else if(child.type == 12) {
+                        int[] lanes = child.block;
+                        float time  = CalcTime(chartData, child);
+                        float z     = time * baseNoteSpeed;
+
+                        GameObject instance = Instantiate(
+                            relayNote,
+                            new Vector3(X[lanes[0]], 0.02f, z),
+                            Quaternion.identity
+                        );
+
+                        RelayNote note = instance.GetComponentInChildren<RelayNote>();
+                        note.Init(id:i, group:0, lanes:lanes, time:time);
+                        note.setSize();
+                    }
+                }
             }
         }
 

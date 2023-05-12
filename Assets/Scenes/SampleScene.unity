@@ -2398,6 +2398,10 @@ MonoBehaviour:
   tapNote: {fileID: 3235971255104848206, guid: 568d0ea174d28b247be2864cd57e92b2, type: 3}
   flickNote: {fileID: 2110514313497121055, guid: 5dafa526e1ccec44c956544ae9bc7c47,
     type: 3}
+  headNote: {fileID: 8154024578252641435, guid: a3bc7b334a680f44185dd0e9a0aeed64,
+    type: 3}
+  relayNote: {fileID: 1476316261656766971, guid: 27dfd70dc34e1aa4a9f9c90641a56662,
+    type: 3}
 --- !u!1 &1023853046
 GameObject:
   m_ObjectHideFlags: 0
