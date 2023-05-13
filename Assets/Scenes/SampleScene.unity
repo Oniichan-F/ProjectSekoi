@@ -2698,7 +2698,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDebugMode: 1
-  isAutoMode: 0
+  isAutoMode: 1
   songID: 0
   songDisplayName: 
   songFileName: 

@@ -7,6 +7,9 @@ public class RelayNote : Note
     private InputManager inputManager;
     private EffectManager effectManager;
 
+    public HeadNote parent;
+    public bool isTail;
+
     private void Start()
     {
         inputManager  = GameObject.Find("InputManager").GetComponent<InputManager>();
@@ -31,6 +34,11 @@ public class RelayNote : Note
                 else {
                     AutoJudge();
                 }
+
+                // Check state
+                if(parent.state == 2) {
+                    isTouchable = false;
+                }
             }
         }
     }
@@ -44,24 +52,36 @@ public class RelayNote : Note
         );
     }
 
-    private void TryDestroy()
+        private void TryDestroy()
     {
         if(time < -0.15f) {
-            effectManager.ShowJudgeEffect(id:0, transform.position.x);
+            //effectManager.ShowJudgeEffect(id:0, transform.position.x);
+
+            if(!isTail) {
+                parent.state = 2;
+            }
+            else {
+                parent.state = 3;
+            }
             Destroy(transform.root.gameObject);
         }
     }
 
     private void AutoJudge()
     {
-        if(time < 0f) {
-            if(RhythmGameManager.instance.isDebugMode) {
-                Debug.Log("auto judge !!");
-            }
-            effectManager.ShowJudgeEffect(id:1, x:transform.position.x);
-            effectManager.PlayJudgeEffect();
+        if(isTouchable) {
+            if(time < 0f) {
+                if(RhythmGameManager.instance.isDebugMode) {
+                    Debug.Log("auto judge !!");
+                }
+                effectManager.ShowJudgeEffect(id:1, x:transform.position.x);
+                effectManager.PlayJudgeEffect();
 
-            Destroy(transform.root.gameObject);
+                if(isTail) {
+                    parent.state = 3;
+                }
+                Destroy(transform.root.gameObject);
+            }
         }
     }
 
@@ -80,10 +100,16 @@ public class RelayNote : Note
         float timeAbs = Mathf.Abs(time);
 
         // Just
-        if(CheckState()) {
-            effectManager.ShowJudgeEffect(id:1, x:transform.position.x);
-            effectManager.PlayJudgeEffect();
-            Destroy(transform.root.gameObject);
+        if(isTouchable) {
+            if(CheckState()) {
+                effectManager.ShowJudgeEffect(id:1, x:transform.position.x);
+                effectManager.PlayJudgeEffect();
+
+                if(isTail) {
+                    parent.state = 3;
+                }
+                Destroy(transform.root.gameObject);
+            }
         }
     }
 }

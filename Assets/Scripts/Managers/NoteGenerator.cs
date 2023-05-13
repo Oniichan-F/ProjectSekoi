@@ -88,23 +88,26 @@ public class NoteGenerator : MonoBehaviour
             // LongNote
             else if(noteData.type == 10) {
                 NoteData[] children = noteData.notes;
+                HeadNote parent = null;
 
-                foreach(NoteData child in children) {
+                for(int j = 0; j < children.Length; j++) {
+                    NoteData child = children[j];
+
                     // HeadNote
                     if(child.type == 11) {
                         int[] lanes = child.block;
                         float time  = CalcTime(chartData, child);
                         float z     = time * baseNoteSpeed;
 
-                        GameObject instance = Instantiate(
+                        GameObject head = Instantiate(
                             headNote,
                             new Vector3(X[lanes[0]], 0.02f, z),
                             Quaternion.identity
                         );
 
-                        HeadNote note = instance.GetComponentInChildren<HeadNote>();
-                        note.Init(id:i, group:0, lanes:lanes, time:time);
-                        note.setSize();
+                        parent = head.GetComponentInChildren<HeadNote>();
+                        parent.Init(id:i, group:0, lanes:lanes, time:time);
+                        parent.setSize();
                     }
 
                     // RelayNote
@@ -113,15 +116,20 @@ public class NoteGenerator : MonoBehaviour
                         float time  = CalcTime(chartData, child);
                         float z     = time * baseNoteSpeed;
 
-                        GameObject instance = Instantiate(
+                        GameObject relay = Instantiate(
                             relayNote,
                             new Vector3(X[lanes[0]], 0.02f, z),
                             Quaternion.identity
                         );
 
-                        RelayNote note = instance.GetComponentInChildren<RelayNote>();
+                        RelayNote note = relay.GetComponentInChildren<RelayNote>();
                         note.Init(id:i, group:0, lanes:lanes, time:time);
                         note.setSize();
+                        note.parent = parent;
+
+                        if(j == children.Length-1) {
+                            note.isTail = true;
+                        }
                     }
                 }
             }
