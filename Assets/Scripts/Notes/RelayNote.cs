@@ -7,7 +7,6 @@ public class RelayNote : Note
     private InputManager inputManager;
     private EffectManager effectManager;
 
-    public HeadNote parent;
     public bool isTail;
 
     private void Start()
@@ -23,7 +22,6 @@ public class RelayNote : Note
                 // Updates
                 UpdatePosition();
                 UpdateTime();
-                TryDestroy();
 
                 // Judgement
                 if(!isAuto) {
@@ -33,11 +31,6 @@ public class RelayNote : Note
                 }
                 else {
                     AutoJudge();
-                }
-
-                // Check state
-                if(parent.state == 2) {
-                    isTouchable = false;
                 }
             }
         }
@@ -52,21 +45,6 @@ public class RelayNote : Note
         );
     }
 
-        private void TryDestroy()
-    {
-        if(time < -0.15f) {
-            //effectManager.ShowJudgeEffect(id:0, transform.position.x);
-
-            if(!isTail) {
-                parent.state = 2;
-            }
-            else {
-                parent.state = 3;
-            }
-            Destroy(transform.root.gameObject);
-        }
-    }
-
     private void AutoJudge()
     {
         if(isTouchable) {
@@ -76,11 +54,6 @@ public class RelayNote : Note
                 }
                 effectManager.ShowJudgeEffect(id:1, x:transform.position.x);
                 effectManager.PlayJudgeEffect();
-
-                if(isTail) {
-                    parent.state = 3;
-                }
-                Destroy(transform.root.gameObject);
             }
         }
     }
@@ -104,11 +77,6 @@ public class RelayNote : Note
             if(CheckState()) {
                 effectManager.ShowJudgeEffect(id:1, x:transform.position.x);
                 effectManager.PlayJudgeEffect();
-
-                if(isTail) {
-                    parent.state = 3;
-                }
-                Destroy(transform.root.gameObject);
             }
         }
     }

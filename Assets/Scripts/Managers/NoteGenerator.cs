@@ -25,11 +25,12 @@ using UnityEngine;
 
 public class NoteGenerator : MonoBehaviour
 {
-    [SerializeField] GameObject tapNote;
-    [SerializeField] GameObject flickNote;
+    [SerializeField] GameObject tapNoteObj;
+    [SerializeField] GameObject flickNoteObj;
 
-    [SerializeField] GameObject headNote;
-    [SerializeField] GameObject relayNote;
+    [SerializeField] GameObject longNoteObj;
+    [SerializeField] GameObject headNoteObj;
+    [SerializeField] GameObject relayNoteObj;
 
     private float[] X = {-3f, -2.5f, -2f, -1.5f, -1f, -0.5f, 0f, 0.5f, 1f, 1.5f, 2f, 2.5f};
 
@@ -58,7 +59,7 @@ public class NoteGenerator : MonoBehaviour
                 float z     = time * baseNoteSpeed;
 
                 GameObject instance = Instantiate(
-                    tapNote,
+                    tapNoteObj,
                     new Vector3(X[lanes[0]], 0.02f, z),
                     Quaternion.identity
                 );
@@ -75,7 +76,7 @@ public class NoteGenerator : MonoBehaviour
                 float z     = time * baseNoteSpeed;
 
                 GameObject instance = Instantiate(
-                    flickNote,
+                    flickNoteObj,
                     new Vector3(X[lanes[0]], 0.02f, z),
                     Quaternion.identity
                 );
@@ -88,7 +89,14 @@ public class NoteGenerator : MonoBehaviour
             // LongNote
             else if(noteData.type == 10) {
                 NoteData[] children = noteData.notes;
-                HeadNote parent = null;
+
+                // LongNote
+                LongNote longNote = Instantiate(
+                    longNoteObj,
+                    new Vector3(0f, 0f, 0f),
+                    Quaternion.identity
+                ).GetComponent<LongNote>();
+                longNote.setOptions(1,1,5);
 
                 for(int j = 0; j < children.Length; j++) {
                     NoteData child = children[j];
@@ -99,15 +107,16 @@ public class NoteGenerator : MonoBehaviour
                         float time  = CalcTime(chartData, child);
                         float z     = time * baseNoteSpeed;
 
-                        GameObject head = Instantiate(
-                            headNote,
+                        HeadNote headNote = Instantiate(
+                            headNoteObj,
                             new Vector3(X[lanes[0]], 0.02f, z),
                             Quaternion.identity
-                        );
+                        ).GetComponentInChildren<HeadNote>();
 
-                        parent = head.GetComponentInChildren<HeadNote>();
-                        parent.Init(id:i, group:0, lanes:lanes, time:time);
-                        parent.setSize();
+                        headNote.Init(id:i, group:0, lanes:lanes, time:time);
+                        headNote.setSize();
+
+                        longNote.headNote = headNote;
                     }
 
                     // RelayNote
@@ -116,20 +125,20 @@ public class NoteGenerator : MonoBehaviour
                         float time  = CalcTime(chartData, child);
                         float z     = time * baseNoteSpeed;
 
-                        GameObject relay = Instantiate(
-                            relayNote,
+                        RelayNote relayNote = Instantiate(
+                            relayNoteObj,
                             new Vector3(X[lanes[0]], 0.02f, z),
                             Quaternion.identity
-                        );
+                        ).GetComponentInChildren<RelayNote>();
 
-                        RelayNote note = relay.GetComponentInChildren<RelayNote>();
-                        note.Init(id:i, group:0, lanes:lanes, time:time);
-                        note.setSize();
-                        note.parent = parent;
+                        relayNote.Init(id:i, group:0, lanes:lanes, time:time);
+                        relayNote.setSize();
 
                         if(j == children.Length-1) {
-                            note.isTail = true;
+                            relayNote.isTail = true;
                         }
+
+                        longNote.relayNotes.Add(relayNote);
                     }
                 }
             }
