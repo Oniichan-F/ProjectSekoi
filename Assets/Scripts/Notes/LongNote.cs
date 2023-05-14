@@ -32,11 +32,14 @@ public class LongNote : MonoBehaviour
 
     private Vector3[] getPositions()
     {
-        Vector3[] positions = new Vector3[relayCount+1];
+        Vector3[] positions = new Vector3[relayCount+3];
         positions[0] = headNote.transform.position;
-        for(int i = 0; i < relayCount; i++) {
-            positions[i+1] = relayNotes[i].transform.position;
+        positions[1] = headNote.transform.position + new Vector3(0f, 0f, 0.1f);
+        for(int i = 0; i < relayCount-1; i++) {
+            positions[i+2] = relayNotes[i].transform.position;
         }
+        positions[relayCount+1] = relayNotes[relayCount-2].transform.position;
+        positions[relayCount+2] = relayNotes[relayCount-1].transform.position;
         
         return positions;
     }
@@ -46,5 +49,10 @@ public class LongNote : MonoBehaviour
         startWidth = sw;
         endWidth   = ew;
         smooth     = sm;
+    }
+
+    public void Destroy()
+    {
+        Destroy(transform.gameObject);
     }
 }

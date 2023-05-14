@@ -6,11 +6,18 @@ public class HeadNote : Note
 {
     private InputManager inputManager;
     private EffectManager effectManager;
+    private LongNote longNote;
+    private LongNoteRenderer longNoteRenderer;
+
+    private bool isCatched;
 
     private void Start()
     {
         inputManager  = GameObject.Find("InputManager").GetComponent<InputManager>();
         effectManager = GameObject.Find("EffectManager").GetComponent<EffectManager>();
+
+        longNote = GetComponentInParent<LongNote>();
+        longNoteRenderer = longNote.GetComponentInChildren<LongNoteRenderer>();
     }
 
     private void Update()
@@ -25,6 +32,10 @@ public class HeadNote : Note
                 if(!isAuto) {
                     if(time < 0.15f) {
                         Judge();
+                    }
+                    if(!isCatched && time < -0.15f) {
+                        longNote.state = 2;
+                        longNoteRenderer.ChangeColor(2);
                     }
                 }
                 else {
@@ -45,12 +56,18 @@ public class HeadNote : Note
 
     private void AutoJudge()
     {
-        if(time < 0f) {
-            if(RhythmGameManager.instance.isDebugMode) {
-                Debug.Log("auto judge !!");
+        if(isTouchable) {
+            if(time < 0f) {
+                if(RhythmGameManager.instance.isDebugMode) {
+                    Debug.Log("auto judge !!");
+                }
+                effectManager.ShowJudgeEffect(id:1, x:transform.position.x);
+                effectManager.PlayJudgeEffect();
+                isTouchable = false;
+
+                longNote.state = 1;
+                longNoteRenderer.ChangeColor(1);
             }
-            effectManager.ShowJudgeEffect(id:1, x:transform.position.x);
-            effectManager.PlayJudgeEffect();
         }
     }
 
@@ -66,27 +83,44 @@ public class HeadNote : Note
             return false;
         }
 
-        float timeAbs = Mathf.Abs(time);
+        if(isTouchable) {
+            float timeAbs = Mathf.Abs(time);
 
-        // Just
-        if(timeAbs < 0.05f) {
-            if(CheckState()) {
-                effectManager.ShowJudgeEffect(id:1, x:transform.position.x);
-                effectManager.PlayJudgeEffect();
+            // Just
+            if(timeAbs < 0.05f) {
+                if(CheckState()) {
+                    effectManager.ShowJudgeEffect(id:1, x:transform.position.x);
+                    effectManager.PlayJudgeEffect();
+                    isTouchable = false;
+
+                    isCatched = true;
+                    longNote.state = 1;
+                    longNoteRenderer.ChangeColor(1);
+                }
             }
-        }
-        // Great
-        else if(timeAbs < 0.1f) {
-            if(CheckState()) {
-                effectManager.ShowJudgeEffect(id:2, x:transform.position.x);
-                effectManager.PlayJudgeEffect();
+            // Great
+            else if(timeAbs < 0.1f) {
+                if(CheckState()) {
+                    effectManager.ShowJudgeEffect(id:2, x:transform.position.x);
+                    effectManager.PlayJudgeEffect();
+                    isTouchable = false;
+
+                    isCatched = true;
+                    longNote.state = 1;
+                    longNoteRenderer.ChangeColor(1);
+                }
             }
-        }
-        // Good
-        else if(timeAbs < 0.15f) {
-            if(CheckState()) {
-                effectManager.ShowJudgeEffect(id:3, x:transform.position.x);
-                effectManager.PlayJudgeEffect();
+            // Good
+            else if(timeAbs < 0.15f) {
+                if(CheckState()) {
+                    effectManager.ShowJudgeEffect(id:3, x:transform.position.x);
+                    effectManager.PlayJudgeEffect();
+                    isTouchable = false;
+
+                    isCatched = true;
+                    longNote.state = 1;
+                    longNoteRenderer.ChangeColor(1);
+                }
             }
         }
     }

@@ -96,7 +96,9 @@ public class NoteGenerator : MonoBehaviour
                     new Vector3(0f, 0f, 0f),
                     Quaternion.identity
                 ).GetComponent<LongNote>();
-                longNote.setOptions(1,1,5);
+                float startWidth = 1f;
+                float endWidth   = 1f;
+                //longNote.setOptions(1,1,5);
 
                 for(int j = 0; j < children.Length; j++) {
                     NoteData child = children[j];
@@ -116,7 +118,9 @@ public class NoteGenerator : MonoBehaviour
                         headNote.Init(id:i, group:0, lanes:lanes, time:time);
                         headNote.setSize();
 
+                        headNote.transform.root.parent = longNote.transform;
                         longNote.headNote = headNote;
+                        startWidth = headNote.size / 2f;
                     }
 
                     // RelayNote
@@ -136,11 +140,14 @@ public class NoteGenerator : MonoBehaviour
 
                         if(j == children.Length-1) {
                             relayNote.isTail = true;
+                            endWidth = relayNote.size / 2f;
                         }
 
+                        relayNote.transform.root.parent = longNote.transform;
                         longNote.relayNotes.Add(relayNote);
                     }
                 }
+                longNote.setOptions(startWidth, endWidth, 1);
             }
         }
 
