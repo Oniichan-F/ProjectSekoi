@@ -83,7 +83,7 @@ public class FlickNote : Note
         if(timeAbs < 0.033f) {
             if(CheckState()) {
                 effectManager.ShowJudgeEffect(id:1, x:transform.position.x);
-                effectManager.PlayJudgeEffect();
+                //effectManager.PlayJudgeEffect();
                 Destroy(transform.root.gameObject);
             }
         }
@@ -91,7 +91,7 @@ public class FlickNote : Note
         else if(timeAbs < 0.066f) {
             if(CheckState()) {
                 effectManager.ShowJudgeEffect(id:2, x:transform.position.x);
-                effectManager.PlayJudgeEffect();
+                //effectManager.PlayJudgeEffect();
                 Destroy(transform.root.gameObject);
             }
         }
@@ -99,7 +99,7 @@ public class FlickNote : Note
         else if(timeAbs < 0.1f) {
             if(CheckState()) {
                 effectManager.ShowJudgeEffect(id:3, x:transform.position.x);
-                effectManager.PlayJudgeEffect();
+                //effectManager.PlayJudgeEffect();
                 Destroy(transform.root.gameObject);
             }
         }

@@ -37,9 +37,9 @@ public class RhythmGameManager : MonoBehaviour
     {
         switch(songID) {
             case 0:
-                songDisplayName = "Test : BPM = 60";
-                songFileName    = "test00";
-                chartFileName   = "test00";
+                songDisplayName = "アイドル";
+                songFileName    = "idol";
+                chartFileName   = "idol";
                 break;
             default:
                 songDisplayName = "empty";

@@ -90,7 +90,7 @@ public class HeadNote : Note
             if(timeAbs < 0.05f) {
                 if(CheckState()) {
                     effectManager.ShowJudgeEffect(id:1, x:transform.position.x);
-                    effectManager.PlayJudgeEffect();
+                    //effectManager.PlayJudgeEffect();
                     isTouchable = false;
 
                     isCatched = true;
@@ -102,7 +102,7 @@ public class HeadNote : Note
             else if(timeAbs < 0.1f) {
                 if(CheckState()) {
                     effectManager.ShowJudgeEffect(id:2, x:transform.position.x);
-                    effectManager.PlayJudgeEffect();
+                    //effectManager.PlayJudgeEffect();
                     isTouchable = false;
 
                     isCatched = true;
@@ -114,7 +114,7 @@ public class HeadNote : Note
             else if(timeAbs < 0.15f) {
                 if(CheckState()) {
                     effectManager.ShowJudgeEffect(id:3, x:transform.position.x);
-                    effectManager.PlayJudgeEffect();
+                    //effectManager.PlayJudgeEffect();
                     isTouchable = false;
 
                     isCatched = true;
