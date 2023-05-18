@@ -2708,7 +2708,7 @@ MonoBehaviour:
   chartFileName: 
   isPaused: 0
   isChartGenerated: 0
-  baseNoteSpeed: 20
+  baseNoteSpeed: 30
 --- !u!1 &1153578890
 GameObject:
   m_ObjectHideFlags: 0

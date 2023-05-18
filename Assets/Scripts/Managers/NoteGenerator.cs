@@ -147,7 +147,10 @@ public class NoteGenerator : MonoBehaviour
                         longNote.relayNotes.Add(relayNote);
                     }
                 }
-                longNote.setOptions(startWidth, endWidth, 1);
+                longNote.setOptions(startWidth, endWidth, 5);
+            }
+            else if(noteData.type == -1) {
+                break;
             }
         }
 

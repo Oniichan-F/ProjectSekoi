@@ -25,8 +25,8 @@ public class HeadNote : Note
         if(RhythmGameManager.instance.isChartGenerated) {
             if(!RhythmGameManager.instance.isPaused) {
                 // Updates
-                UpdatePosition();
                 UpdateTime();
+                UpdatePosition();
 
                 // Judgement
                 if(!isAuto) {
@@ -65,6 +65,7 @@ public class HeadNote : Note
                 effectManager.PlayJudgeEffect();
                 isTouchable = false;
 
+                isCatched = true;
                 longNote.state = 1;
                 longNoteRenderer.ChangeColor(1);
             }
