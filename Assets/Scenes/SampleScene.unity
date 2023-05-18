@@ -2395,8 +2395,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35addd21a59dcbb4588f17a714b0f611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tapNote: {fileID: 3235971255104848206, guid: 568d0ea174d28b247be2864cd57e92b2, type: 3}
-  flickNote: {fileID: 2110514313497121055, guid: 5dafa526e1ccec44c956544ae9bc7c47,
+  tapNoteObj: {fileID: 3235971255104848206, guid: 568d0ea174d28b247be2864cd57e92b2,
+    type: 3}
+  flickNoteObj: {fileID: 2110514313497121055, guid: 5dafa526e1ccec44c956544ae9bc7c47,
+    type: 3}
+  longNoteObj: {fileID: 4554032362290480880, guid: 35dcfed324280c84d90d55ab78dd3dcb,
+    type: 3}
+  headNoteObj: {fileID: 8154024578252641435, guid: a3bc7b334a680f44185dd0e9a0aeed64,
+    type: 3}
+  relayNoteObj: {fileID: 1476316261656766971, guid: 27dfd70dc34e1aa4a9f9c90641a56662,
     type: 3}
   slideNote: {fileID: 5614882477467336286, guid: e1143dcde6db8d74385c8407e71f0f3f,
     type: 3}
@@ -2696,14 +2703,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDebugMode: 1
-  isAutoMode: 0
+  isAutoMode: 1
   songID: 0
   songDisplayName: 
   songFileName: 
   chartFileName: 
   isPaused: 0
   isChartGenerated: 0
-  baseNoteSpeed: 20
+  baseNoteSpeed: 30
 --- !u!1 &1153578890
 GameObject:
   m_ObjectHideFlags: 0

@@ -21,7 +21,7 @@ public class Note : MonoBehaviour
         this.group = group;
         this.lanes = lanes;
         this.time  = time; 
-        this.isTouchable = false;
+        this.isTouchable = true;
 
         this.size   = lanes.Length;
         this.speed  = RhythmGameManager.instance.baseNoteSpeed;

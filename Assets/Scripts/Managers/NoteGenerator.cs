@@ -25,9 +25,12 @@ using UnityEngine;
 
 public class NoteGenerator : MonoBehaviour
 {
-    [SerializeField] GameObject tapNote;
-    [SerializeField] GameObject flickNote;
-    [SerializeField] GameObject slideNote;
+    [SerializeField] GameObject tapNoteObj;
+    [SerializeField] GameObject flickNoteObj;
+
+    [SerializeField] GameObject longNoteObj;
+    [SerializeField] GameObject headNoteObj;
+    [SerializeField] GameObject relayNoteObj;
 
     private float[] X = {-3f, -2.5f, -2f, -1.5f, -1f, -0.5f, 0f, 0.5f, 1f, 1.5f, 2f, 2.5f};
 
@@ -56,7 +59,7 @@ public class NoteGenerator : MonoBehaviour
                 float z     = time * baseNoteSpeed;
 
                 GameObject instance = Instantiate(
-                    tapNote,
+                    tapNoteObj,
                     new Vector3(X[lanes[0]], 0.02f, z),
                     Quaternion.identity
                 );
@@ -73,7 +76,7 @@ public class NoteGenerator : MonoBehaviour
                 float z     = time * baseNoteSpeed;
 
                 GameObject instance = Instantiate(
-                    flickNote,
+                    flickNoteObj,
                     new Vector3(X[lanes[0]], 0.02f, z),
                     Quaternion.identity
                 );
@@ -83,21 +86,71 @@ public class NoteGenerator : MonoBehaviour
                 note.setSize();
             }
 
-            // SlideNote
-            else if(noteData.type == 3) {
-                int[] lanes = noteData.block;
-                float time  = CalcTime(chartData, noteData);
-                float z     = time * baseNoteSpeed;
+            // LongNote
+            else if(noteData.type == 10) {
+                NoteData[] children = noteData.notes;
 
-                GameObject instance = Instantiate(
-                    slideNote,
-                    new Vector3(X[lanes[0]], 0.02f, z),
+                // LongNote
+                LongNote longNote = Instantiate(
+                    longNoteObj,
+                    new Vector3(0f, 0f, 0f),
                     Quaternion.identity
-                );
+                ).GetComponent<LongNote>();
+                float startWidth = 1f;
+                float endWidth   = 1f;
+                //longNote.setOptions(1,1,5);
 
-                SlideNote note = instance.GetComponentInChildren<SlideNote>();
-                note.Init(id:i, group:0, lanes:lanes, time:time);
-                note.setSize();
+                for(int j = 0; j < children.Length; j++) {
+                    NoteData child = children[j];
+
+                    // HeadNote
+                    if(child.type == 11) {
+                        int[] lanes = child.block;
+                        float time  = CalcTime(chartData, child);
+                        float z     = time * baseNoteSpeed;
+
+                        HeadNote headNote = Instantiate(
+                            headNoteObj,
+                            new Vector3(X[lanes[0]], 0.02f, z),
+                            Quaternion.identity
+                        ).GetComponentInChildren<HeadNote>();
+
+                        headNote.Init(id:i, group:0, lanes:lanes, time:time);
+                        headNote.setSize();
+
+                        headNote.transform.root.parent = longNote.transform;
+                        longNote.headNote = headNote;
+                        startWidth = headNote.size / 2f;
+                    }
+
+                    // RelayNote
+                    else if(child.type == 12) {
+                        int[] lanes = child.block;
+                        float time  = CalcTime(chartData, child);
+                        float z     = time * baseNoteSpeed;
+
+                        RelayNote relayNote = Instantiate(
+                            relayNoteObj,
+                            new Vector3(X[lanes[0]], 0.02f, z),
+                            Quaternion.identity
+                        ).GetComponentInChildren<RelayNote>();
+
+                        relayNote.Init(id:i, group:0, lanes:lanes, time:time);
+                        relayNote.setSize();
+
+                        if(j == children.Length-1) {
+                            relayNote.isTail = true;
+                            endWidth = relayNote.size / 2f;
+                        }
+
+                        relayNote.transform.root.parent = longNote.transform;
+                        longNote.relayNotes.Add(relayNote);
+                    }
+                }
+                longNote.setOptions(startWidth, endWidth, 5);
+            }
+            else if(noteData.type == -1) {
+                break;
             }
         }
 
