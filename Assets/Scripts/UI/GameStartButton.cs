@@ -7,6 +7,6 @@ public class GameStartButton : MonoBehaviour
 {
     public void onClick()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("SongSelectScene");
     }
 }
