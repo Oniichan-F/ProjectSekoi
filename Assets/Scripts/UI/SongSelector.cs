@@ -5,6 +5,8 @@ using UnityEngine;
 public class SongSelector : MonoBehaviour
 {
     [SerializeField] SongTable songTable;
+    [SerializeField] Jacket jacket;
+    [SerializeField] SongInfo songInfo;
 
     public void onNextButtonClick()
     {
@@ -16,6 +18,8 @@ public class SongSelector : MonoBehaviour
         }
 
         songTable.SetSongInfoFromID(GameManager.gameManager.songID);
+        jacket.ChangeJacket();
+        songInfo.ChangeSongInfo();
     }
 
     public void onPrevButtonClick()
@@ -28,5 +32,7 @@ public class SongSelector : MonoBehaviour
         }
 
         songTable.SetSongInfoFromID(GameManager.gameManager.songID);
+        jacket.ChangeJacket();
+        songInfo.ChangeSongInfo();
     }
 }
