@@ -22,8 +22,8 @@ public class HeadNote : Note
 
     private void Update()
     {
-        if(RhythmGameManager.instance.isChartGenerated) {
-            if(!RhythmGameManager.instance.isPaused) {
+        if(GameManager.gameManager.isChartGenerated) {
+            if(!GameManager.gameManager.isPaused) {
                 // Updates
                 UpdateTime();
                 UpdatePosition();
@@ -58,7 +58,7 @@ public class HeadNote : Note
     {
         if(isTouchable) {
             if(time < 0f) {
-                if(RhythmGameManager.instance.isDebugMode) {
+                if(GameManager.gameManager.isDebugMode) {
                     Debug.Log("auto judge !!");
                 }
                 effectManager.ShowJudgeEffect(id:1, x:transform.position.x);

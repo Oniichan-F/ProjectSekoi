@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
 
     // game play
     public int difficulty; // 0:easy, 1:hard
+    public bool isAutoPlay;
     public bool isPaused;
     public bool isChartGenerated;
 
@@ -47,6 +48,7 @@ public class GameManager : MonoBehaviour
             isChartGenerated = false;
 
             songTable.SetSongInfoFromID(songID);
+            DontDestroyOnLoad(this.gameObject);
         }
         else {
             Destroy(this.gameObject);

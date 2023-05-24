@@ -6,13 +6,13 @@ public class MusicManager : MonoBehaviour
 {
     private AudioSource audioSource;
     private AudioClip audioClip;
-    private string songFileName;
+    private string songSourceName;
 
     private void Start()
     {
-        songFileName = RhythmGameManager.instance.songFileName;
+        songSourceName = GameManager.gameManager.songSourceName;
         audioSource  = GetComponent<AudioSource>();
-        audioClip    = Resources.Load<AudioClip>("Music/" + songFileName);
+        audioClip    = Resources.Load<AudioClip>("Music/" + songSourceName);
         audioSource.clip = audioClip;
 
         Play();
@@ -20,7 +20,7 @@ public class MusicManager : MonoBehaviour
 
     public void Toggle()
     {
-        if(RhythmGameManager.instance.isPaused) {
+        if(GameManager.gameManager.isPaused) {
             Pause();
         }
         else {

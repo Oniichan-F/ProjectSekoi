@@ -12,14 +12,14 @@ public class PlayButton : MonoBehaviour
 
     private void Start() 
     {
-        isPaused = RhythmGameManager.instance.isPaused;
+        isPaused = GameManager.gameManager.isPaused;
         ChangeVisual();
     }
 
     public void onClick()
     {
         isPaused = !isPaused;
-        RhythmGameManager.instance.isPaused = isPaused;
+        GameManager.gameManager.isPaused = isPaused;
         ChangeVisual();
 
     }

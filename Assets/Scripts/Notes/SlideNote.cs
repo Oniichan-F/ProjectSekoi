@@ -15,8 +15,8 @@ public class SlideNote : Note
 
     private void Update()
     {
-        if(RhythmGameManager.instance.isChartGenerated) {
-            if(!RhythmGameManager.instance.isPaused) {
+        if(GameManager.gameManager.isChartGenerated) {
+            if(!GameManager.gameManager.isPaused) {
                 // Updates
                 UpdatePosition();
                 UpdateTime();
@@ -55,7 +55,7 @@ public class SlideNote : Note
     private void AutoJudge()
     {
         if(time < 0f) {
-            if(RhythmGameManager.instance.isDebugMode) {
+            if(GameManager.gameManager.isDebugMode) {
                 Debug.Log("auto judge !!");
             }
             effectManager.ShowJudgeEffect(id:1, x:transform.position.x);
