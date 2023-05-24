@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SongSelectScene.unity
     guid: 09ea39d216cd461408a734fd2698e07a
+  - enabled: 1
+    path: Assets/Scenes/GameScene.unity
+    guid: 3af44053191054f45976f05f64ee95a0
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: c850ee8c3b14cc8459e7e186857cf567

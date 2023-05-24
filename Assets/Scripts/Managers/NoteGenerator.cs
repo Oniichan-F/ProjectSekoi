@@ -34,19 +34,26 @@ public class NoteGenerator : MonoBehaviour
 
     private float[] X = {-3f, -2.5f, -2f, -1.5f, -1f, -0.5f, 0f, 0.5f, 1f, 1.5f, 2f, 2.5f};
 
-    private string chartFileName;
+    private string songChartName;
     private float baseNoteSpeed;
+    private int userOffset;
 
     private void OnEnable()
     {
-        chartFileName = RhythmGameManager.instance.chartFileName;
-        baseNoteSpeed = RhythmGameManager.instance.baseNoteSpeed;
-        Load(chartFileName);
+        if(GameManager.gameManager.difficulty == 0) {
+            songChartName = GameManager.gameManager.songChartName + "_easy";
+        }
+        else if(GameManager.gameManager.difficulty == 1) {
+            songChartName = GameManager.gameManager.songChartName + "_hard";
+        }
+        baseNoteSpeed = GameManager.gameManager.speed * 10f;
+
+        Load(songChartName);
     }
 
-    private void Load(string chartFileName)
+    private void Load(string songChartName)
     {
-        string jsonFile = Resources.Load<TextAsset>("Chart/" + chartFileName).ToString();
+        string jsonFile = Resources.Load<TextAsset>("Chart/" + songChartName).ToString();
         ChartData chartData = JsonUtility.FromJson<ChartData>(jsonFile);
 
         for(int i = 0; i < chartData.notes.Length; i++) {
@@ -65,7 +72,7 @@ public class NoteGenerator : MonoBehaviour
                 );
 
                 TapNote note = instance.GetComponentInChildren<TapNote>();
-                note.Init(id:i, group:0, lanes:lanes, time:time);
+                note.Init(id:i, group:0, lanes:lanes, speed:baseNoteSpeed, time:time);
                 note.setSize();
             }
 
@@ -82,7 +89,7 @@ public class NoteGenerator : MonoBehaviour
                 );
 
                 FlickNote note = instance.GetComponentInChildren<FlickNote>();
-                note.Init(id:i, group:0, lanes:lanes, time:time);
+                note.Init(id:i, group:0, lanes:lanes, speed:baseNoteSpeed, time:time);
                 note.setSize();
             }
 
@@ -115,7 +122,7 @@ public class NoteGenerator : MonoBehaviour
                             Quaternion.identity
                         ).GetComponentInChildren<HeadNote>();
 
-                        headNote.Init(id:i, group:0, lanes:lanes, time:time);
+                        headNote.Init(id:i, group:0, lanes:lanes, speed:baseNoteSpeed, time:time);
                         headNote.setSize();
 
                         headNote.transform.root.parent = longNote.transform;
@@ -135,7 +142,7 @@ public class NoteGenerator : MonoBehaviour
                             Quaternion.identity
                         ).GetComponentInChildren<RelayNote>();
 
-                        relayNote.Init(id:i, group:0, lanes:lanes, time:time);
+                        relayNote.Init(id:i, group:0, lanes:lanes, speed:baseNoteSpeed, time:time);
                         relayNote.setSize();
 
                         if(j == children.Length-1) {
@@ -154,7 +161,7 @@ public class NoteGenerator : MonoBehaviour
             }
         }
 
-        RhythmGameManager.instance.isChartGenerated = true;
+        GameManager.gameManager.isChartGenerated = true;
     }
 
     private float CalcTime(ChartData cd, NoteData nd)

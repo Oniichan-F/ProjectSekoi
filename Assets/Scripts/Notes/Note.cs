@@ -15,7 +15,7 @@ public class Note : MonoBehaviour
 
     private Renderer rend;
 
-    public void Init(int id, int group, int[] lanes, float time)
+    public void Init(int id, int group, int[] lanes, float speed, float time)
     {
         this.id    = id;
         this.group = group;
@@ -24,8 +24,8 @@ public class Note : MonoBehaviour
         this.isTouchable = true;
 
         this.size   = lanes.Length;
-        this.speed  = RhythmGameManager.instance.baseNoteSpeed;
-        this.isAuto = RhythmGameManager.instance.isAutoMode; 
+        this.speed  = speed;
+        this.isAuto = GameManager.gameManager.isAutoPlay; 
         rend = GetComponent<Renderer>();
         ChangeVisibility(true);
     }
