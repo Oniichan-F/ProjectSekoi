@@ -18,6 +18,12 @@ public class GameManager : MonoBehaviour
     public string composerName;
     public string charterName;
 
+    // options
+    public int offset;
+    public float speed;
+    public float musicVolume;
+    public float seVolume;
+
     // game play
     public int difficulty; // 0:easy, 1:hard
     public bool isPaused;
@@ -30,8 +36,13 @@ public class GameManager : MonoBehaviour
             Application.targetFrameRate = 60;
             gameManager = this;
 
-            songID           = 0;
-            difficulty       = 0;
+            songID      = 0;
+            difficulty  = 0;
+            offset      = 0;
+            speed       = 3f;
+            musicVolume = 0.5f;
+            seVolume    = 0.5f;
+
             isPaused         = false;
             isChartGenerated = false;
 

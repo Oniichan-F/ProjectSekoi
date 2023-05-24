@@ -7,6 +7,16 @@ public class SongSelector : MonoBehaviour
     [SerializeField] SongTable songTable;
     [SerializeField] Jacket jacket;
     [SerializeField] SongInfo songInfo;
+    [SerializeField] DifficultySelector difficultySelector;
+
+
+    private void Start() 
+    {
+        songTable.SetSongInfoFromID(GameManager.gameManager.songID);
+        jacket.ChangeJacket();
+        songInfo.ChangeSongInfo();
+        difficultySelector.ChangeButtonLevels();        
+    }
 
     public void onNextButtonClick()
     {
@@ -20,6 +30,7 @@ public class SongSelector : MonoBehaviour
         songTable.SetSongInfoFromID(GameManager.gameManager.songID);
         jacket.ChangeJacket();
         songInfo.ChangeSongInfo();
+        difficultySelector.ChangeButtonLevels();
     }
 
     public void onPrevButtonClick()
@@ -34,5 +45,6 @@ public class SongSelector : MonoBehaviour
         songTable.SetSongInfoFromID(GameManager.gameManager.songID);
         jacket.ChangeJacket();
         songInfo.ChangeSongInfo();
+        difficultySelector.ChangeButtonLevels();
     }
 }

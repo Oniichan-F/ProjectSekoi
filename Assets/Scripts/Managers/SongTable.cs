@@ -9,6 +9,9 @@ public class SongTable : MonoBehaviour
     [SerializeField] private string[] songChartnames;
     [SerializeField] private string[] composerNames;
     [SerializeField] private string[] charterNames;
+    [SerializeField] private int[] levelEasy;
+    [SerializeField] private int[] levelHard;
+
 
     public int maxID;
 
@@ -24,6 +27,16 @@ public class SongTable : MonoBehaviour
         GameManager.gameManager.songChartName   = songChartnames[id];
         GameManager.gameManager.composerName    = composerNames[id];
         GameManager.gameManager.charterName     = charterNames[id];
+    }
+
+    public int getLevel_easy(int id)
+    {
+        return levelEasy[id];
+    }
+
+    public int getLevel_hard(int id)
+    {
+        return levelHard[id];
     }
 
     private int GetMaxID()
