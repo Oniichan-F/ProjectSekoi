@@ -47,6 +47,7 @@ public class NoteGenerator : MonoBehaviour
             songChartName = GameManager.gameManager.songChartName + "_hard";
         }
         baseNoteSpeed = GameManager.gameManager.speed * 10f;
+        userOffset    = GameManager.gameManager.offset;
 
         Load(songChartName);
     }
@@ -168,7 +169,7 @@ public class NoteGenerator : MonoBehaviour
     {
         float interval = 60f / (cd.BPM * nd.LPB);
         float beatsec  = interval * (float)nd.LPB;
-        float time     = (beatsec * nd.num / (float)nd.LPB) + cd.offset * 0.01f;
+        float time     = (beatsec * nd.num / (float)nd.LPB) + (cd.offset + userOffset) * 0.01f;
         return time;
     }
 
