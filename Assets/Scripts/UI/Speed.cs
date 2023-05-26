@@ -12,7 +12,7 @@ public class Speed : MonoBehaviour
 
     public void UP()
     {
-        if(GameManager.gameManager.speed < 3.91f) {
+        if(GameManager.gameManager.speed < 4.91f) {
             GameManager.gameManager.speed += 0.1f;
             ChangeSpeedText();
         }

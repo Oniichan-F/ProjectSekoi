@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
             songID      = 0;
             difficulty  = 0;
             offset      = 0;
-            speed       = 3f;
+            speed       = 4f;
             musicVolume = 0.5f;
             seVolume    = 0.5f;
 
