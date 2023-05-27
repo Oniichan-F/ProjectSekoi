@@ -44,6 +44,7 @@ public class RelayNote : Note
                             longNoteRenderer.ChangeColor(2);
                             scoreManager.combo = 0;
                             scoreManager.missCount += 1;
+                            scoreManager.UpdateCanvas();
                         }
                     }
                 }
@@ -79,6 +80,8 @@ public class RelayNote : Note
 
                 scoreManager.combo += 1;
                 scoreManager.justCount += 1;
+                scoreManager.score += 1f / scoreManager.maxCombo;
+                scoreManager.UpdateCanvas();
 
                 isTouchable = false;
             }
@@ -107,6 +110,7 @@ public class RelayNote : Note
 
                 scoreManager.combo += 1;
                 scoreManager.justCount += 1;
+                scoreManager.UpdateCanvas();
 
                 isTouchable = false;
                 isCatched = true;

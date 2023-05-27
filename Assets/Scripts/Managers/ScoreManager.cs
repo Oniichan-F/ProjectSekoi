@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
-    public int score;
+    [SerializeField] ScoreCanvas scoreCanvas;
+
+    public float score;
     public int combo;
     public int maxCombo;
     public int justCount;
@@ -19,6 +21,12 @@ public class ScoreManager : MonoBehaviour
         justCount  = 0;
         greatCount = 0;
         goodCount  = 0;
-        missCount  = 0;   
+        missCount  = 0;
+        maxCombo = GameManager.gameManager.maxCombo;  
+    }
+
+    public void UpdateCanvas()
+    {
+        scoreCanvas.UpdateCombo();
     }
 }

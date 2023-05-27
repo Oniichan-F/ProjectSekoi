@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public string songChartName;
     public string composerName;
     public string charterName;
+    public int maxCombo;
 
     // options
     public int offset;

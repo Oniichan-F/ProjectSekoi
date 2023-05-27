@@ -52,6 +52,7 @@ public class FlickNote : Note
             effectManager.ShowJudgeEffect(id:0, transform.position.x);
             scoreManager.combo = 0;
             scoreManager.missCount += 1;
+            scoreManager.UpdateCanvas();
             Destroy(transform.root.gameObject);
         }
     }
@@ -67,6 +68,8 @@ public class FlickNote : Note
 
             scoreManager.combo += 1;
             scoreManager.justCount += 1;
+            scoreManager.score += 1f / scoreManager.maxCombo;
+            scoreManager.UpdateCanvas();
 
             Destroy(transform.root.gameObject);
         }
@@ -94,6 +97,7 @@ public class FlickNote : Note
 
                 scoreManager.combo += 1;
                 scoreManager.justCount += 1;
+                scoreManager.UpdateCanvas();
 
                 Destroy(transform.root.gameObject);
             }
@@ -106,6 +110,7 @@ public class FlickNote : Note
 
                 scoreManager.combo += 1;
                 scoreManager.greatCount += 1;
+                scoreManager.UpdateCanvas();
 
                 Destroy(transform.root.gameObject);
             }
@@ -118,6 +123,7 @@ public class FlickNote : Note
 
                 scoreManager.combo += 1;
                 scoreManager.goodCount += 1;
+                scoreManager.UpdateCanvas();
 
                 Destroy(transform.root.gameObject);
             }

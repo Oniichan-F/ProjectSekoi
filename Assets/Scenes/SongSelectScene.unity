@@ -295,6 +295,7 @@ MonoBehaviour:
   songChartName: 
   composerName: 
   charterName: 
+  maxCombo: 0
   offset: 0
   speed: 0
   musicVolume: 0
@@ -1882,6 +1883,7 @@ MonoBehaviour:
   - empty
   levelEasy: 0300000000000000
   levelHard: 0800000000000000
+  maxCombo: 6901000000000000
   maxID: 0
 --- !u!4 &753215901
 Transform:

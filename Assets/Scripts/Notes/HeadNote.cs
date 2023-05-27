@@ -41,6 +41,7 @@ public class HeadNote : Note
                         longNoteRenderer.ChangeColor(2);
                         scoreManager.combo = 0;
                         scoreManager.missCount += 1;
+                        scoreManager.UpdateCanvas();
                     }
                 }
                 else {
@@ -71,6 +72,8 @@ public class HeadNote : Note
 
                 scoreManager.combo += 1;
                 scoreManager.justCount += 1;
+                scoreManager.score += 1f / scoreManager.maxCombo;
+                scoreManager.UpdateCanvas();
 
                 isTouchable = false;
                 isCatched = true;
@@ -103,6 +106,7 @@ public class HeadNote : Note
 
                     scoreManager.combo += 1;
                     scoreManager.justCount += 1;
+                    scoreManager.UpdateCanvas();
 
                     isTouchable = false;
                     isCatched = true;
@@ -118,6 +122,7 @@ public class HeadNote : Note
 
                     scoreManager.combo += 1;
                     scoreManager.greatCount += 1;
+                    scoreManager.UpdateCanvas();
 
                     isTouchable = false;
                     isCatched = true;
@@ -133,6 +138,7 @@ public class HeadNote : Note
 
                     scoreManager.combo += 1;
                     scoreManager.goodCount += 1;
+                    scoreManager.UpdateCanvas();
 
                     isTouchable = false;
                     isCatched = true;
