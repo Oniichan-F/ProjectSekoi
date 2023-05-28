@@ -110,6 +110,7 @@ public class RelayNote : Note
 
                 scoreManager.combo += 1;
                 scoreManager.justCount += 1;
+                scoreManager.score += 1f / scoreManager.maxCombo;
                 scoreManager.UpdateCanvas();
 
                 isTouchable = false;

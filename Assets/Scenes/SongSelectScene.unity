@@ -169,6 +169,11 @@ MonoBehaviour:
   isAutoPlay: 0
   isPaused: 0
   isChartGenerated: 0
+  score: 0
+  justCount: 0
+  greatCount: 0
+  goodCount: 0
+  missCount: 0
 --- !u!4 &34679839
 Transform:
   m_ObjectHideFlags: 0
@@ -1733,7 +1738,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   songDisplayNames:
   - "\u30A2\u30A4\u30C9\u30EB"
-  - empty
+  - N/A
   songSourceNames:
   - idol
   - empty
@@ -1742,12 +1747,12 @@ MonoBehaviour:
   - empty
   composerNames:
   - YOASOBI
-  - empty
+  - N/A
   charterNames:
-  - "\u304A\u306B\u3043\u3061\u3083\u3093"
-  - empty
-  levelEasy: 0300000000000000
-  levelHard: 0800000000000000
+  - "\u308F\u305F\u304F\u3057"
+  - N/A
+  levelEasy: 0300000001000000
+  levelHard: 0800000005000000
   maxCombo: 6901000000000000
   maxID: 0
 --- !u!4 &753215901

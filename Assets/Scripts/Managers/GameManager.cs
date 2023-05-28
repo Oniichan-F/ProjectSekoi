@@ -31,6 +31,13 @@ public class GameManager : MonoBehaviour
     public bool isPaused;
     public bool isChartGenerated;
 
+    // result
+    public float score;
+    public int justCount;
+    public int greatCount;
+    public int goodCount;
+    public int missCount;
+
 
     private void Awake()
     {
@@ -49,10 +56,20 @@ public class GameManager : MonoBehaviour
             isChartGenerated = false;
 
             songTable.SetSongInfoFromID(songID);
+            resetResult();
             DontDestroyOnLoad(this.gameObject);
         }
         else {
             Destroy(this.gameObject);
         }
+    }
+
+    public void resetResult()
+    {
+        score = 0f;
+        justCount = 0;
+        greatCount = 0;
+        goodCount = 0;
+        missCount = 0;
     }
 }

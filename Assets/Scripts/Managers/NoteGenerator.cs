@@ -32,6 +32,8 @@ public class NoteGenerator : MonoBehaviour
     [SerializeField] GameObject headNoteObj;
     [SerializeField] GameObject relayNoteObj;
 
+    [SerializeField] GameObject endNoteObj;
+
     private float[] X = {-3f, -2.5f, -2f, -1.5f, -1f, -0.5f, 0f, 0.5f, 1f, 1.5f, 2f, 2.5f};
 
     private string songChartName;
@@ -156,6 +158,16 @@ public class NoteGenerator : MonoBehaviour
                     }
                 }
                 longNote.setOptions(startWidth, endWidth, 5);
+            }
+            // EndNote
+            else if(noteData.type == 1000) {
+                EndNote endNote = Instantiate(
+                    endNoteObj,
+                    new Vector3(0f, 0f, 0f),
+                    Quaternion.identity
+                ).GetComponent<EndNote>();
+
+                endNote.time = CalcTime(chartData, noteData);
             }
             else if(noteData.type == -1) {
                 break;

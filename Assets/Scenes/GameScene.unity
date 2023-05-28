@@ -2699,6 +2699,8 @@ MonoBehaviour:
     type: 3}
   relayNoteObj: {fileID: 1476316261656766971, guid: 27dfd70dc34e1aa4a9f9c90641a56662,
     type: 3}
+  endNoteObj: {fileID: 1866379545991547178, guid: 839c857381ad9f540b09f330683f744d,
+    type: 3}
 --- !u!1 &1023853046
 GameObject:
   m_ObjectHideFlags: 0

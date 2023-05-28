@@ -106,6 +106,7 @@ public class HeadNote : Note
 
                     scoreManager.combo += 1;
                     scoreManager.justCount += 1;
+                    scoreManager.score += 1f / scoreManager.maxCombo;
                     scoreManager.UpdateCanvas();
 
                     isTouchable = false;
@@ -122,6 +123,7 @@ public class HeadNote : Note
 
                     scoreManager.combo += 1;
                     scoreManager.greatCount += 1;
+                    scoreManager.score += 0.75f * (1f / scoreManager.maxCombo);
                     scoreManager.UpdateCanvas();
 
                     isTouchable = false;
@@ -138,6 +140,7 @@ public class HeadNote : Note
 
                     scoreManager.combo += 1;
                     scoreManager.goodCount += 1;
+                    scoreManager.score += 0.5f * (1f / scoreManager.maxCombo);
                     scoreManager.UpdateCanvas();
 
                     isTouchable = false;
