@@ -32,8 +32,8 @@ public class LongNoteRenderer : MonoBehaviour
 
     public void setOptions(float sw, float ew, int sm)
     {
-        startWidth = sw;
-        endWidth   = ew;
+        startWidth = sw-0.01f;
+        endWidth   = ew-0.01f;
         smooth     = sm;
     }
 

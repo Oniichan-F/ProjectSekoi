@@ -5,12 +5,15 @@ using UnityEngine.UI;
 
 public class DifficultyFrame : MonoBehaviour
 {
-    [SerializeField] private float rotationSpeed;
+    [SerializeField] float rotationSpeed;
+    [SerializeField] Sprite easyFrame;
+    [SerializeField] Sprite hardFrame;
     public float t;
 
     private void Start()
     {
-        t = 1f;    
+        t = 1f;
+        ChangeDifficultyFrameColor();
     }
 
     private void Update()
@@ -37,13 +40,11 @@ public class DifficultyFrame : MonoBehaviour
     {
         // easy
         if(GameManager.gameManager.difficulty == 0) {
-            GetComponent<Image>().color = new Color(0f, 1f, 0f, 0.5f);
-            transform.Find("child").GetComponent<Image>().color = new Color(0f, 1f, 0f, 1f);
+            GetComponent<Image>().sprite = easyFrame;
         }
         // hard
         else if(GameManager.gameManager.difficulty == 1) {
-            GetComponent<Image>().color = new Color(1f, 0f, 0f, 0.5f);
-            transform.Find("child").GetComponent<Image>().color = new Color(1f, 0f, 0f, 1f);
+            GetComponent<Image>().sprite = hardFrame;
         }
     }
 }

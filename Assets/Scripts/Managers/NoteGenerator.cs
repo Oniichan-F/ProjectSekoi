@@ -32,6 +32,8 @@ public class NoteGenerator : MonoBehaviour
     [SerializeField] GameObject headNoteObj;
     [SerializeField] GameObject relayNoteObj;
 
+    [SerializeField] GameObject endNoteObj;
+
     private float[] X = {-3f, -2.5f, -2f, -1.5f, -1f, -0.5f, 0f, 0.5f, 1f, 1.5f, 2f, 2.5f};
 
     private string songChartName;
@@ -47,6 +49,7 @@ public class NoteGenerator : MonoBehaviour
             songChartName = GameManager.gameManager.songChartName + "_hard";
         }
         baseNoteSpeed = GameManager.gameManager.speed * 10f;
+        userOffset    = GameManager.gameManager.offset;
 
         Load(songChartName);
     }
@@ -156,6 +159,16 @@ public class NoteGenerator : MonoBehaviour
                 }
                 longNote.setOptions(startWidth, endWidth, 5);
             }
+            // EndNote
+            else if(noteData.type == 1000) {
+                EndNote endNote = Instantiate(
+                    endNoteObj,
+                    new Vector3(0f, 0f, 0f),
+                    Quaternion.identity
+                ).GetComponent<EndNote>();
+
+                endNote.time = CalcTime(chartData, noteData);
+            }
             else if(noteData.type == -1) {
                 break;
             }
@@ -168,7 +181,7 @@ public class NoteGenerator : MonoBehaviour
     {
         float interval = 60f / (cd.BPM * nd.LPB);
         float beatsec  = interval * (float)nd.LPB;
-        float time     = (beatsec * nd.num / (float)nd.LPB) + cd.offset * 0.01f;
+        float time     = (beatsec * nd.num / (float)nd.LPB) + (cd.offset + userOffset) * 0.01f;
         return time;
     }
 

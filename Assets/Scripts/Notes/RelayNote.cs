@@ -6,6 +6,8 @@ public class RelayNote : Note
 {
     private InputManager inputManager;
     private EffectManager effectManager;
+    private ScoreManager scoreManager;
+
     private LongNote longNote;
     private LongNoteRenderer longNoteRenderer;
 
@@ -16,6 +18,7 @@ public class RelayNote : Note
     {
         inputManager  = GameObject.Find("InputManager").GetComponent<InputManager>();
         effectManager = GameObject.Find("EffectManager").GetComponent<EffectManager>();
+        scoreManager = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
 
         longNote = GetComponentInParent<LongNote>();
         longNoteRenderer = longNote.GetComponentInChildren<LongNoteRenderer>();
@@ -39,6 +42,9 @@ public class RelayNote : Note
                             isTouchable = false;
                             longNote.state = 2;
                             longNoteRenderer.ChangeColor(2);
+                            scoreManager.combo = 0;
+                            scoreManager.missCount += 1;
+                            scoreManager.UpdateCanvas();
                         }
                     }
                 }
@@ -71,6 +77,12 @@ public class RelayNote : Note
                 }
                 effectManager.ShowJudgeEffect(id:1, x:transform.position.x);
                 //effectManager.PlayJudgeEffect();
+
+                scoreManager.combo += 1;
+                scoreManager.justCount += 1;
+                scoreManager.score += 1f / scoreManager.maxCombo;
+                scoreManager.UpdateCanvas();
+
                 isTouchable = false;
             }
         }
@@ -95,8 +107,13 @@ public class RelayNote : Note
             if(CheckState()) {
                 effectManager.ShowJudgeEffect(id:1, x:transform.position.x);
                 //effectManager.PlayJudgeEffect();
-                isTouchable = false;
 
+                scoreManager.combo += 1;
+                scoreManager.justCount += 1;
+                scoreManager.score += 1f / scoreManager.maxCombo;
+                scoreManager.UpdateCanvas();
+
+                isTouchable = false;
                 isCatched = true;
             }
         }

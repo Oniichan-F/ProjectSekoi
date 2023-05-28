@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public string songChartName;
     public string composerName;
     public string charterName;
+    public int maxCombo;
 
     // options
     public int offset;
@@ -30,6 +31,13 @@ public class GameManager : MonoBehaviour
     public bool isPaused;
     public bool isChartGenerated;
 
+    // result
+    public float score;
+    public int justCount;
+    public int greatCount;
+    public int goodCount;
+    public int missCount;
+
 
     private void Awake()
     {
@@ -40,7 +48,7 @@ public class GameManager : MonoBehaviour
             songID      = 0;
             difficulty  = 0;
             offset      = 0;
-            speed       = 3f;
+            speed       = 4f;
             musicVolume = 0.5f;
             seVolume    = 0.5f;
 
@@ -48,10 +56,20 @@ public class GameManager : MonoBehaviour
             isChartGenerated = false;
 
             songTable.SetSongInfoFromID(songID);
+            resetResult();
             DontDestroyOnLoad(this.gameObject);
         }
         else {
             Destroy(this.gameObject);
         }
+    }
+
+    public void resetResult()
+    {
+        score = 0f;
+        justCount = 0;
+        greatCount = 0;
+        goodCount = 0;
+        missCount = 0;
     }
 }

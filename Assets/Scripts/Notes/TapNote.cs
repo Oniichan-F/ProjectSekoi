@@ -6,11 +6,13 @@ public class TapNote : Note
 {
     private InputManager inputManager;
     private EffectManager effectManager;
+    private ScoreManager scoreManager;
 
     private void Start()
     {
         inputManager  = GameObject.Find("InputManager").GetComponent<InputManager>();
         effectManager = GameObject.Find("EffectManager").GetComponent<EffectManager>();
+        scoreManager = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
     }
 
     private void Update()
@@ -48,6 +50,9 @@ public class TapNote : Note
     {
         if(time < -0.15f) {
             effectManager.ShowJudgeEffect(id:0, transform.position.x);
+            scoreManager.combo = 0;
+            scoreManager.missCount += 1;
+            scoreManager.UpdateCanvas();
             Destroy(transform.root.gameObject);
         }
     }
@@ -60,6 +65,11 @@ public class TapNote : Note
             }
             effectManager.ShowJudgeEffect(id:1, x:transform.position.x);
             effectManager.PlayJudgeEffect();
+
+            scoreManager.combo += 1;
+            scoreManager.justCount += 1;
+            scoreManager.score += 1f / scoreManager.maxCombo;
+            scoreManager.UpdateCanvas();
 
             Destroy(transform.root.gameObject);
         }
@@ -83,7 +93,13 @@ public class TapNote : Note
         if(timeAbs < 0.033f) {
             if(CheckState()) {
                 effectManager.ShowJudgeEffect(id:1, x:transform.position.x);
-                //effectManager.PlayJudgeEffect();
+                effectManager.PlayJudgeEffect();
+
+                scoreManager.combo += 1;
+                scoreManager.justCount += 1;
+                scoreManager.score += 1f / scoreManager.maxCombo;
+                scoreManager.UpdateCanvas();
+
                 Destroy(transform.root.gameObject);
             }
         }
@@ -91,7 +107,13 @@ public class TapNote : Note
         else if(timeAbs < 0.066f) {
             if(CheckState()) {
                 effectManager.ShowJudgeEffect(id:2, x:transform.position.x);
-                //effectManager.PlayJudgeEffect();
+                effectManager.PlayJudgeEffect();
+
+                scoreManager.combo += 1;
+                scoreManager.greatCount += 1;
+                scoreManager.score += 0.75f * (1f / scoreManager.maxCombo);
+                scoreManager.UpdateCanvas();
+
                 Destroy(transform.root.gameObject);
             }
         }
@@ -99,7 +121,13 @@ public class TapNote : Note
         else if(timeAbs < 0.1f) {
             if(CheckState()) {
                 effectManager.ShowJudgeEffect(id:3, x:transform.position.x);
-                //effectManager.PlayJudgeEffect();
+                effectManager.PlayJudgeEffect();
+
+                scoreManager.combo += 1;
+                scoreManager.goodCount += 1;
+                scoreManager.score += 0.5f * (1f / scoreManager.maxCombo);
+                scoreManager.UpdateCanvas();
+
                 Destroy(transform.root.gameObject);
             }
         }
