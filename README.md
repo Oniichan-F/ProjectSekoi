@@ -23,7 +23,8 @@
 ![result](screenshot_result.png)
 
 ## Demo
-TODO
+https://github.com/Oniichan-F/ProjectSekoi/assets/106595027/326713f5-0e73-4df2-b863-bce0030bd9e3
+
 
 ## Credit
 - エンジン - Unity (2021.3.23f1) : https://unity.com/
